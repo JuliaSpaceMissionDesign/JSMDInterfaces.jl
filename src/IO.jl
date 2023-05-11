@@ -4,15 +4,26 @@ export load, filepath, filepaths
 
 abstract type AbstractFile end
 
-function filepaths(::T) where {T<:AbstractFile} end
-function filepath(::T, idx::Int) where {T<:AbstractFile} end
+"""
+    filepaths(files::AbstractFile)
+
+Return the path of all the files loaded within `file`.
+"""
+function filepaths(::AbstractFile) end
+
+"""
+    filepath(files::AbstractFile, idx::Int)
+
+Return the path of the `idx`-th file within `files`.
+"""
+function filepath(::AbstractFile, idx::Int) end
 
 """
     load(files::T) where T <: AbstractFile
 
 Generic loader of different file/s formats.
 """
-function load(::T) where {T<:AbstractFile} end
+function load(::AbstractFile) end
 function load(::Type{T}, files::String...) where {T<:AbstractFile} end
 
 """

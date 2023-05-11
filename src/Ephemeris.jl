@@ -2,8 +2,8 @@ module Ephemeris
 
 export AbstractEphemerisProvider, load, ephem_compute!, ephem_orient!, EphemerisError
 
-using SMDInterfacesUtils.Interfaces.Errors: @module_error, AbstractGenericException
-import SMDInterfacesUtils.IO: load
+using JSMDInterfaces.Errors: @module_error, AbstractGenericException
+import JSMDInterfaces.IO: load
 
 @module_error struct EphemerisError <: AbstractGenericException
     "ephemeris load or computations errors"
@@ -100,11 +100,14 @@ jd0+time.
 ### Arguments 
 
 - `eph` -- ephemeris
-- `jd0` -- jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris. 
-- `time` -- jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris. 
+- `jd0` -- jd0+time must be equal to the Julian Day for the time coordinate corresponding 
+    to the ephemeris. 
+- `time` -- jd0+time must be equal to the Julian Day for the time coordinate corresponding 
+    to the ephemeris. 
 - `target` -- The body or reference point whose coordinates are required. 
 - `center` -- The origin of the coordinate system. 
-- `order` -- The order of derivatives from 0 (position) to 3 (position, velocity, acceleration and jerk).
+- `order` -- The order of derivatives from 0 (position) to 3 (position, velocity, 
+    acceleration and jerk).
 """
 function ephem_compute!(
     res, eph::E, jd0::Number, time::Number, target::Int, center::Int, order::Int
@@ -125,14 +128,18 @@ Abstract method to compute orientations.
 
 ### Algorithm
 
-Compute Euler angles and derivatives up to order for the orientation of target at epoch jd0+time.
+Compute Euler angles and derivatives up to order for the orientation of target at epoch 
+    `jd0 + time`.
 
 ### Arguments
 - `eph`: ephemeris
-- `jd0`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris.
-- `time`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris.
+- `jd0`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to 
+    the ephemeris.
+- `time`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to 
+    the ephemeris.
 - `target`: The body whose orientation is required.
-- `order` -- The order of derivatives from 0 (position) to 3 (position, velocity, acceleration and jerk).
+- `order` -- The order of derivatives from 0 (position) to 3 (position, velocity, 
+    acceleration and jerk).
 """
 function ephem_orient!(
     res, eph::E, jd0::Number, time::Number, target::Int, order::Int

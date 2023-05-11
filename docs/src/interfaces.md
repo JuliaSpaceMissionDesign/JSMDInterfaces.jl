@@ -8,3 +8,14 @@ Modules = [JSMDInterfaces.Errors]
 ```@autodocs
 Modules = [JSMDInterfaces.Ephemeris]
 ```
+
+# Math 
+```@autodocs
+Modules = [JSMDInterfaces.Math]
+
+```
+
+# IO 
+```@autodocs
+Modules = [JSMDInterfaces.IO]
+```
