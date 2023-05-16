@@ -1,4 +1,4 @@
-module IO 
+module FilesIO
 
 export load, filepath, filepaths
 
@@ -48,11 +48,11 @@ macro filetype(ftype, suptype)
                 return $ftype{length(files)}(files)
             end
 
-            function JSMDInterfaces.IO.filepath(ft::$ftype, idx::Int=1)
+            function FilesIO.filepath(ft::$ftype, idx::Int=1)
                 return ft.files[idx]
             end
 
-            function JSMDInterfaces.IO.filepaths(ft::$ftype)
+            function FilesIO.filepaths(ft::$ftype)
                 return ft.files
             end
         end,
