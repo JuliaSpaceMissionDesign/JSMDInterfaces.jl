@@ -48,11 +48,11 @@ macro filetype(ftype, suptype)
                 return $ftype{length(files)}(files)
             end
 
-            function filepath(ft::$ftype, idx::Int=1)
+            function JSMDInterfaces.IO.filepath(ft::$ftype, idx::Int=1)
                 return ft.files[idx]
             end
 
-            function filepaths(ft::$ftype)
+            function JSMDInterfaces.IO.filepaths(ft::$ftype)
                 return ft.files
             end
         end,
