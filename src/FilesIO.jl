@@ -12,11 +12,11 @@ Return the path of all the files loaded within `file`.
 function filepaths(::AbstractFile) end
 
 """
-    filepath(files::AbstractFile, idx::Int)
+    filepath(files::AbstractFile, idx::Int=1)
 
-Return the path of the `idx`-th file within `files`.
+Return the path of the `idx`-th file within `files`. 
 """
-function filepath(::AbstractFile, idx::Int) end
+function filepath(::AbstractFile, idx::Int=1) end
 
 """
     load(files::T) where T <: AbstractFile
@@ -36,7 +36,7 @@ macro filetype(ftype, suptype)
     return esc(
         quote
             """
-                $($ftype) <: $($supertype)
+                $($ftype) <: $($suptype)
 
             A type representing $($ftype) files.
             """
