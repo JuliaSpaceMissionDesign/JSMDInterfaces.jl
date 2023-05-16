@@ -15,7 +15,7 @@ Modules = [JSMDInterfaces.Math]
 
 ```
 
-# IO 
+# FilesIO 
 ```@autodocs
-Modules = [JSMDInterfaces.IO]
+Modules = [JSMDInterfaces.FilesIO]
 ```

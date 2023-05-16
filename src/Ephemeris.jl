@@ -62,7 +62,7 @@ end
 Load ephemeris files.
 """
 function load(provider::Type{<:AbstractEphemerisProvider}, files::String...)
-    return provider(files)AbstractFile
+    return provider(files)
 end
 
 for fun in (
