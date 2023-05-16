@@ -3,7 +3,7 @@ module Ephemeris
 export AbstractEphemerisProvider, load, ephem_compute!, ephem_orient!, EphemerisError
 
 using JSMDInterfaces.Errors: @module_error, AbstractGenericException
-import JSMDInterfaces.IO: load
+import JSMDInterfaces.FilesIO: load
 
 @module_error struct EphemerisError <: AbstractGenericException
     "ephemeris load or computations errors"
