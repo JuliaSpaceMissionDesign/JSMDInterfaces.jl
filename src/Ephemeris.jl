@@ -51,8 +51,8 @@ Store an orientation record metadata.
 """
 struct EphemAxesRecord
     target::Int
-    start_epoch::Float64
-    stop_epoch::Float64
+    jd_start::Float64
+    jd_stop::Float64
     axes::Int
 end
 
