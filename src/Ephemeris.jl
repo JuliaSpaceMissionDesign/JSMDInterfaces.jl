@@ -57,11 +57,11 @@ struct EphemAxesRecord
 end
 
 """
-    load(::Type{<:AbstractEphemerisProvider}, files::String...)
+    load(::Type{<:AbstractEphemerisProvider}, files)
 
 Load ephemeris files.
 """
-function load(provider::Type{<:AbstractEphemerisProvider}, files::String...)
+function load(provider::Type{<:AbstractEphemerisProvider}, files)
     return provider(files)
 end
 
