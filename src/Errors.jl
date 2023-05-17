@@ -34,12 +34,15 @@ macro module_error(expr)
                 mod::String
                 msg::String
             end
+            
             function ($ename)(msg::String)
-                return ename(String(Symbol(@__MODULE__)), msg)
+                return $(ename)(String(Symbol(@__MODULE__)), msg)
             end
+
             function Base.showerror(io::IO, err::$ename)
                 return println(io, "($(err.mod)) $(err.msg)")
             end
+            
             export $ename
         end,
     )
