@@ -35,7 +35,7 @@ macro custom_error(expr)
             end
 
             function Base.showerror(io::IO, err::$ename)
-                return println(io, "$ename: $(err.msg)")
+                return println(io, "$($ename): $(err.msg)")
             end
             
             export $ename
