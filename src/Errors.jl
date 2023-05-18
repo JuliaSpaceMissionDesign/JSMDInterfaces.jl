@@ -1,6 +1,6 @@
 module Errors
 
-export AbstractGenericException, @module_error, GenericError, NotImplementedError
+export AbstractGenericException, @custom_error, GenericError, NotImplementedError
 
 """
     AbstractGenericException
@@ -10,11 +10,11 @@ A supertype for all ecosystem related errors.
 abstract type AbstractGenericException <: Exception end
 
 """
-    @module_error
+    @custom_error
 
-Create a type representing an error associated to a specific module.
+Create a type representing a custom error type.
 """
-macro module_error(expr)
+macro custom_error(expr)
     name = expr.args[2]
     if name isa Symbol
         ename = name
@@ -31,16 +31,11 @@ macro module_error(expr)
             A type representing $($(descr)).
             """
             struct $name
-                mod::String
                 msg::String
-            end
-            
-            function ($ename)(msg::String)
-                return $(ename)(String(Symbol(@__MODULE__)), msg)
             end
 
             function Base.showerror(io::IO, err::$ename)
-                return println(io, "($(err.mod)) $(err.msg)")
+                return println(io, "$ename: $(err.msg)")
             end
             
             export $ename
@@ -52,10 +47,10 @@ end
 # error types 
 # 
 
-@module_error struct GenericError <: AbstractGenericException
+@custom_error struct GenericError <: AbstractGenericException
     "generic errors"
 end
-@module_error struct NotImplementedError <: AbstractGenericException
+@custom_error struct NotImplementedError <: AbstractGenericException
     "not implemented errors"
 end
 

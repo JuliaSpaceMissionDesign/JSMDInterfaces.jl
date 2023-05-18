@@ -2,10 +2,10 @@ module Ephemeris
 
 export AbstractEphemerisProvider, load, ephem_compute!, ephem_orient!, EphemerisError
 
-using JSMDInterfaces.Errors: @module_error, AbstractGenericException
+using JSMDInterfaces.Errors: @custom_error, AbstractGenericException
 import JSMDInterfaces.FilesIO: load
 
-@module_error struct EphemerisError <: AbstractGenericException
+@custom_error struct EphemerisError <: AbstractGenericException
     "ephemeris load or computations errors"
 end
 
@@ -74,10 +74,9 @@ for fun in (
     :ephem_timescale,
 )
     @eval begin
-        function ($fun)(eph::E) where {E<:AbstractEphemerisProvider}
+        function ($fun)(eph::AbstractEphemerisProvider)
             throw(
                 NotImplementedError(
-                    String(Symbol(@__MODULE__)),
                     "$($fun) shall be implemented for type $(typeof(eph))",
                 ),
             )
@@ -87,67 +86,50 @@ for fun in (
 end
 
 """
-    ephem_compute!(res, eph::E, jd0::Number, time::Number, target::Int, 
-        center::Int, order::Int) where {E<:AbstractEphemerisProvider}
+    ephem_compute!(res, eph::AbstractEphemerisProvider, jd0::Number, time::Number, 
+        target::Int, center::Int, order::Int)
 
-Abstract method to compute ephemeris. 
+Abstract method to compute position and derivatives up to `order` of `target` with 
+respect to `center` at the Julian Date `jd0 + time`.
 
-### Algorithm 
-
-Compute position and derivatives up to order of target with respect to center at epoch 
-jd0+time.
-
-### Arguments 
-
-- `eph` -- ephemeris
-- `jd0` -- jd0+time must be equal to the Julian Day for the time coordinate corresponding 
-    to the ephemeris. 
-- `time` -- jd0+time must be equal to the Julian Day for the time coordinate corresponding 
-    to the ephemeris. 
+### Inputs 
+- `eph` -- Ephemeris provider.
+- `jd0`, `time` -- `jd0 + time` must be equal to the Julian Day for the time coordinate 
+    corresponding to the ephemeris. 
 - `target` -- The body or reference point whose coordinates are required. 
 - `center` -- The origin of the coordinate system. 
 - `order` -- The order of derivatives from 0 (position) to 3 (position, velocity, 
     acceleration and jerk).
 """
 function ephem_compute!(
-    res, eph::E, jd0::Number, time::Number, target::Int, center::Int, order::Int
-) where {E<:AbstractEphemerisProvider}
+    res, eph::AbstractEphemerisProvider, ::Number, ::Number, ::Int, ::Int, ::Int
+)
     throw(
         NotImplementedError(
-            String(Symbol(@__MODULE__)),
-            "`ephem_compute!` shall be implemented for type $(typeof(eph))",
+            "`ephem_compute!` shall be implemented for type $(typeof(eph)).",
         ),
     )
 end
 
 """
-    ephem_orient!(res, eph::E, jd0::Number, time::Number, target::Int, 
-        order::Int) where {E<:AbstractEphemerisProvider}
+    ephem_orient!(res, eph::AbstractEphemerisProvider, jd0::Number, time::Number, 
+        target::Int, order::Int)
 
-Abstract method to compute orientations.
+Abstract method to compute Euler angles and derivatives up to `order` for the orientation of 
+the `target` axes at epoch `jd0 + time`.
 
-### Algorithm
+### Inputs
+- `eph` -- Ephemeris provider.
+- `jd0`, `time` -- `jd0 + time` must be equal to the Julian Day for the time coordinate 
+    corresponding to the ephemeris. 
+- `target` -- The axes whose orientation is required.
+- `order` -- The order of derivatives from 0 (angles) to 3 (angles, angles rate, etc...).
 
-Compute Euler angles and derivatives up to order for the orientation of target at epoch 
-    `jd0 + time`.
-
-### Arguments
-- `eph`: ephemeris
-- `jd0`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to 
-    the ephemeris.
-- `time`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to 
-    the ephemeris.
-- `target`: The body whose orientation is required.
-- `order` -- The order of derivatives from 0 (position) to 3 (position, velocity, 
-    acceleration and jerk).
 """
-function ephem_orient!(
-    res, eph::E, jd0::Number, time::Number, target::Int, order::Int
-) where {E<:AbstractEphemerisProvider}
+function ephem_orient!(res, ::AbstractEphemerisProvider, ::Number, ::Number, ::Int, ::Int)
     throw(
         NotImplementedError(
-            String(Symbol(@__MODULE__)),
-            "`ephem_orient!` shall be implemented for type $(typeof(eph))",
+            "`ephem_orient!` shall be implemented for type $(typeof(eph)).",
         ),
     )
 end
