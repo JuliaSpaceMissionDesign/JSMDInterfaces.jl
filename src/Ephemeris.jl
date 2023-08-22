@@ -123,10 +123,13 @@ the `target` axes at epoch `jd0 + time`.
 - `jd0`, `time` -- `jd0 + time` must be equal to the Julian Day for the time coordinate 
     corresponding to the ephemeris. 
 - `target` -- The axes whose orientation is required.
+- `center` -- The parent set of axes
 - `order` -- The order of derivatives from 0 (angles) to 3 (angles, angles rate, etc...).
 
 """
-function ephem_orient!(res, ::AbstractEphemerisProvider, ::Number, ::Number, ::Int, ::Int)
+function ephem_orient!(
+    res, ::AbstractEphemerisProvider, ::Number, ::Number, ::Int, ::Int, ::Int
+)
     throw(
         NotImplementedError(
             "`ephem_orient!` shall be implemented for type $(typeof(eph)).",
