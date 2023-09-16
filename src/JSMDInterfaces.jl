@@ -6,5 +6,6 @@ include("Errors.jl")
 include("Math.jl")
 include("Ephemeris.jl")
 
+include("Models.jl")
 
 end
