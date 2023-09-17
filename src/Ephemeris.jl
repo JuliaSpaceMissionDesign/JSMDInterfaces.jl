@@ -113,7 +113,7 @@ end
 
 """
     ephem_orient!(res, eph::AbstractEphemerisProvider, jd0::Number, time::Number, 
-        target::Int, order::Int)
+        target::Int, center::Int, order::Int)
 
 Abstract method to compute Euler angles and derivatives up to `order` for the orientation of 
 the `target` axes at epoch `jd0 + time`.
@@ -123,7 +123,7 @@ the `target` axes at epoch `jd0 + time`.
 - `jd0`, `time` -- `jd0 + time` must be equal to the Julian Day for the time coordinate 
     corresponding to the ephemeris. 
 - `target` -- The axes whose orientation is required.
-- `center` -- The parent set of axes
+- `center` -- The parent set of axes.
 - `order` -- The order of derivatives from 0 (angles) to 3 (angles, angles rate, etc...).
 
 """
