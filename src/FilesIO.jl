@@ -1,30 +1,35 @@
 module FilesIO
 
+using JSMDInterfaces.Interface: @interface
+using SMDGraphs: AbstractGraphNode
+
 export load, filepath, filepaths
 
 abstract type AbstractFile end
+
+# Generic files 
 
 """
     filepaths(files::AbstractFile)
 
 Return the path of all the files loaded within `file`.
 """
-function filepaths(::AbstractFile) end
+@interface function filepaths(::AbstractFile) end
 
 """
     filepath(files::AbstractFile, idx::Int=1)
 
 Return the path of the `idx`-th file within `files`. 
 """
-function filepath(::AbstractFile, idx::Int=1) end
+@interface function filepath(::AbstractFile, idx::Int=1) end
 
 """
     load(files::T) where T <: AbstractFile
 
 Generic loader of different file/s formats.
 """
-function load(::AbstractFile) end
-function load(::Type{T}, files::String...) where {T<:AbstractFile} end
+@interface function load(::AbstractFile) end
+@interface function load(::Type{T}, files::String...) where {T<:AbstractFile} end
 
 """
     filetype(ftype, suptype)
@@ -58,5 +63,16 @@ macro filetype(ftype, suptype)
         end,
     )
 end
+
+# JSMD interface 
+
+abstract type AbstractArchiveNode <: AbstractGraphNode end
+
+"""
+    function load(::AbstractArchiveNode)
+
+Generic loader for JSMD archive nodes.
+"""
+@interface function load(::AbstractArchiveNode) end 
 
 end

@@ -1,5 +1,7 @@
 module Math 
 
+using JSMDInterfaces.Interface: @interface
+
 export interpolate 
 
 """
@@ -14,7 +16,6 @@ abstract type AbstractInterpolationMethod end
 
 Abstract interpolator call method.
 """
-function interpolate(::AbstractInterpolationMethod, x) end
-
+@interface function interpolate(::AbstractInterpolationMethod, x) end
 
 end
