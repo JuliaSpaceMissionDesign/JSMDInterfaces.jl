@@ -1,7 +1,7 @@
 module JSMDInterfaces
 
-include("Interface.jl")
 include("Errors.jl")
+include("Interface.jl")
 include("FilesIO.jl")
 
 include("Math.jl")

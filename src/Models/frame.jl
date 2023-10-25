@@ -1,7 +1,8 @@
-export AbstractFrameGraphModel, 
-       AbstractFrameGraphAxisNode, AbstractFrameGraphPointNode,
+export AbstractFrameGraphModel, AbstractFrameGraphAxisNode, AbstractFrameGraphPointNode,
        vector3, vector6, vector9, vector12,
        rotation3, rotation6, rotation9, rotation12
+
+using Graphs: AbstractGraph
 
 """
     AbstractFrameGraphModel
@@ -9,7 +10,7 @@ export AbstractFrameGraphModel,
 Abstract type for frames graphs. 
 Subtype it to create a new frames graph compatible with the ecosystem.
 """
-abstract type AbstractFrameGraphModel <: AbstractJSMDModel end
+abstract type AbstractFrameGraphModel{T} <: AbstractGraph{T} end
 
 """
     AbstractFrameGraphPointNode
@@ -28,7 +29,7 @@ Subtype it to create an axis node type for a frame graph.
 abstract type AbstractFrameGraphAxisNode <: AbstractGraphNode end
 
 # ----
-# Translation/rotation interface 
+# JSMD interface 
 
 """
     vector3(model::F, from::Int, to::Int, axis::Int, time::T) where {T, F <: AbstractFrameGraphModel}

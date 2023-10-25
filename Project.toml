@@ -4,6 +4,7 @@ authors = ["JSMD Team"]
 version = "1.3.1"
 
 [deps]
+Graphs = "86223c79-3864-5bf0-83f7-82e725a168b6"
 SMDGraphs = "b792745b-7241-45be-ba96-70eb67e8468f"
 
 [compat]

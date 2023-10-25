@@ -1,7 +1,18 @@
 module Interface
 
+using JSMDInterfaces.Errors: NotImplementedError
+
 export @interface
 
+"""
+    @interface 
+
+This macro can be used to create a in interface function within the 
+JSMD ecosystem. 
+
+Interface functions are intended as function with some abstract 
+types as inputs throwing a not implemented error as default behaviour.
+"""
 macro interface(expr)
 
     full_signature = expr.args[1]
@@ -35,7 +46,7 @@ macro interface(expr)
         return esc(quote
             function ($fun_name)($(fun_args...)) where {$(fun_where...)}
                 throw(
-                    ErrorException(
+                    NotImplementedError(
                         "No method compatible with the current call implemented for the interface '$($fun_name)'!"
                     )
                 )
@@ -45,7 +56,7 @@ macro interface(expr)
         return esc(quote
             function ($fun_name)($(fun_args...))
                 throw(
-                    ErrorException(
+                    NotImplementedError(
                         "No compatible with the current call implemented for the interface '$($fun_name)'!"
                     )
                 )
