@@ -1,6 +1,6 @@
 module FilesIO
 
-using JSMDInterfaces.Interface: @interface
+using JSMDInterfaces.Interface
 using JSMDInterfaces.Graph: AbstractJSMDGraphNode
 
 export load, filepath, filepaths

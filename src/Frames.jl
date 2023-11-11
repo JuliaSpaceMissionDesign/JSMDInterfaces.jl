@@ -1,7 +1,7 @@
 module Frames
 
 using Graphs: AbstractGraph
-using JSMDInterfaces.Interface: @interface
+using JSMDInterfaces.Interface
 
 export AbstractJSMDFrameGraph,
        vector3, vector6, vector9, vector12,

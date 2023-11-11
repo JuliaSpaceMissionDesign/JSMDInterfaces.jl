@@ -1,6 +1,6 @@
 module Graph
 
-using JSMDInterfaces.Interface: @interface 
+using JSMDInterfaces.Interface
 
 using Graphs
 

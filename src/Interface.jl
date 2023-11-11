@@ -1,8 +1,8 @@
 module Interface
 
-using JSMDInterfaces.Errors: NotImplementedError
+import JSMDInterfaces.Errors: NotImplementedError
 
-export @interface
+export @interface, NotImplementedError
 
 """
     @interface 

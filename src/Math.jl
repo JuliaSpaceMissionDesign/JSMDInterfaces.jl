@@ -1,6 +1,6 @@
 module Math 
 
-using JSMDInterfaces.Interface: @interface
+using JSMDInterfaces.Interface
 
 export interpolate 
 

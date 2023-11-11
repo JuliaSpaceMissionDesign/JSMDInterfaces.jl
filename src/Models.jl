@@ -1,7 +1,7 @@
 module Models
 
 using JSMDInterfaces.Errors
-using JSMDInterfaces.Interface: @interface
+using JSMDInterfaces.Interface
 using JSMDInterfaces.FilesIO: AbstractArchiveNode
 
 export AbstractJSMDModel, 
