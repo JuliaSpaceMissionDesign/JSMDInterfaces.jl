@@ -13,8 +13,8 @@ makedocs(;
                 "interfaces/Errors.md",
                 "interfaces/Interface.md",
                 "interfaces/FilesIO.md",
-                "interfaces/Graphs.md"
-                "interfaces/Frames.md"
+                "interfaces/Graphs.md",
+                "interfaces/Frames.md",
                 "interfaces/Math.md",
                 "interfaces/Ephemeris.md",
                 "interfaces/Models.md"
