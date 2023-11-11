@@ -1,11 +1,13 @@
 module JSMDInterfaces
 
-include("FilesIO.jl")
 include("Errors.jl")
+include("Interface.jl")
+include("Graph.jl")
+include("FilesIO.jl")
 
+include("Frames.jl")
 include("Math.jl")
 include("Ephemeris.jl")
-
 include("Models.jl")
 
 end
