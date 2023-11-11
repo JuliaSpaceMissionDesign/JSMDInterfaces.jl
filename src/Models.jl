@@ -1,8 +1,13 @@
+module Models
+
+using JSMDInterfaces.Errors
+using JSMDInterfaces.Interface: @interface
+using JSMDInterfaces.FilesIO: AbstractArchiveNode
+
 export AbstractJSMDModel, 
        AbstractJSMDModelData, 
        parse_data, parse_data, 
        dump_model, load_model
-
 
 """
     AbstractJSMDModelData
@@ -61,3 +66,5 @@ This function serves as an interface to load from an archive node a JSMD compati
 """
 @interface function load_model(::Type{T}, ::Type{<:AbstractJSMDModel}, ::N, 
     args...; kargs...) where {T, N <: AbstractArchiveNode} end
+
+end

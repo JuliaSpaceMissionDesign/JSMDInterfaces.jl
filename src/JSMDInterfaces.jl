@@ -8,7 +8,6 @@ include("FilesIO.jl")
 include("Frames.jl")
 include("Math.jl")
 include("Ephemeris.jl")
-
-include("Models/Models.jl")
+include("Models.jl")
 
 end
