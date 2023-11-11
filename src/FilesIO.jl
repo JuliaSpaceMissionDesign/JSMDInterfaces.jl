@@ -1,7 +1,7 @@
 module FilesIO
 
 using JSMDInterfaces.Interface: @interface
-using SMDGraphs: AbstractGraphNode
+using JSMDInterfaces.Graph: AbstractJSMDGraphNode
 
 export load, filepath, filepaths
 
@@ -66,7 +66,7 @@ end
 
 # JSMD interface 
 
-abstract type AbstractArchiveNode <: AbstractGraphNode end
+abstract type AbstractArchiveNode <: AbstractJSMDGraphNode end
 
 """
     function load(::AbstractArchiveNode)

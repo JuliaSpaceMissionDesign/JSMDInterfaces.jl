@@ -26,7 +26,7 @@ macro custom_error(expr)
     return esc(
         quote
             """
-                $($(name))
+                $($(ename))
 
             A type representing $($(descr)).
             """

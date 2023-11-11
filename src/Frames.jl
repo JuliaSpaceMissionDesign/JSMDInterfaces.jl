@@ -1,8 +1,11 @@
-export AbstractFrameGraphModel, AbstractFrameGraphAxisNode, AbstractFrameGraphPointNode,
-       vector3, vector6, vector9, vector12,
-       rotation3, rotation6, rotation9, rotation12
+module Frames
 
 using Graphs: AbstractGraph
+using JSMDInterfaces.Interface: @interface
+
+export AbstractFrameGraphModel,
+       vector3, vector6, vector9, vector12,
+       rotation3, rotation6, rotation9, rotation12
 
 """
     AbstractFrameGraphModel
@@ -11,22 +14,6 @@ Abstract type for frames graphs.
 Subtype it to create a new frames graph compatible with the ecosystem.
 """
 abstract type AbstractFrameGraphModel{T} <: AbstractGraph{T} end
-
-"""
-    AbstractFrameGraphPointNode
-
-Abstract type for frame graphs points nodes. 
-Subtype it to create a point node type for a frame graph.
-"""
-abstract type AbstractFrameGraphPointNode <: AbstractGraphNode end
-
-"""
-    AbstractFrameGraphAxisNode
-
-Abstract type for frame graphs axes nodes. 
-Subtype it to create an axis node type for a frame graph.
-"""
-abstract type AbstractFrameGraphAxisNode <: AbstractGraphNode end
 
 # ----
 # JSMD interface 
@@ -46,7 +33,7 @@ This function serves as an interface for constructing a position vector using a 
 !!! warning 
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
-@interface function vector3(::F, ::Int, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+@interface function vector3(::AbstractFrameGraphModel, ::Int, ::Int, ::Int, ::Number) end
 
 """
     vector6(model::F, from::Int, to::Int, axis::Int, time::T) where {T, F <: AbstractFrameGraphModel}
@@ -168,3 +155,5 @@ derivative between two axes within a frame graph model.
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
 @interface function rotation12(::F, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+
+end
