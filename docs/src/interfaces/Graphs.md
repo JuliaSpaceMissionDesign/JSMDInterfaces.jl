@@ -1,4 +1,4 @@
-# Models
+# Graph
 ```@autodocs
-Modules = [JSMDInterfaces.Graphs]
+Modules = [JSMDInterfaces.Graph]
 ```
