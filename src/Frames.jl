@@ -19,7 +19,7 @@ abstract type AbstractFrameGraphModel{T} <: AbstractGraph{T} end
 # JSMD interface 
 
 """
-    vector3(model::F, from::Int, to::Int, axis::Int, time::T) where {T, F <: AbstractFrameGraphModel}
+    vector3(model::F, from::Int, to::Int, axis::Int, time::Number)
 
 This function serves as an interface for constructing a position vector using a frame graph model.
 
@@ -36,7 +36,7 @@ This function serves as an interface for constructing a position vector using a 
 @interface function vector3(::AbstractFrameGraphModel, ::Int, ::Int, ::Int, ::Number) end
 
 """
-    vector6(model::F, from::Int, to::Int, axis::Int, time::T) where {T, F <: AbstractFrameGraphModel}
+    vector6(model::F, from::Int, to::Int, axis::Int, time::Number)
 
 This function serves as an interface for constructing a position and velocity vector using a frame graph model.
 
@@ -50,10 +50,10 @@ This function serves as an interface for constructing a position and velocity ve
 !!! warning
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
-@interface function vector6(::F, ::Int, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+@interface function vector6(::AbstractFrameGraphModel, ::Int, ::Int, ::Int, ::Number) end
 
 """
-    vector9(model::F, from::Int, to::Int, axis::Int, time::T) where {T, F <: AbstractFrameGraphModel}
+    vector9(model::F, from::Int, to::Int, axis::Int, time::Number)
 
 This function serves as an interface for constructing a position, velocity, and acceleration vector 
 using a frame graph model.
@@ -68,10 +68,10 @@ using a frame graph model.
 !!! warning
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
-@interface function vector9(::F, ::Int, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+@interface function vector9(::AbstractFrameGraphModel, ::Int, ::Int, ::Int, ::Number) end
 
 """
-    vector12(model::F, from::Int, to::Int, axis::Int, time::T) where {T, F <: AbstractFrameGraphModel}
+    vector12(model::F, from::Int, to::Int, axis::Int, time::Number)
 
 This function serves as an interface for constructing a position, velocity, acceleration, and jerk vector 
 using a frame graph model.
@@ -86,10 +86,10 @@ using a frame graph model.
 !!! warning
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
-@interface function vector12(::F, ::Int, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+@interface function vector12(::AbstractFrameGraphModel, ::Int, ::Int, ::Int, ::Number) end
 
 """
-    rotation3(model::F, from::Int, to::Int, time::T) where {T, F <: AbstractFrameGraphModel}
+    rotation3(model::F, from::Int, to::Int, time::Number)
 
 This function serves as an interface for constructing a rotation matrix between two axes within 
 a frame graph model.
@@ -103,10 +103,10 @@ a frame graph model.
 !!! warning 
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
-@interface function rotation3(::F, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+@interface function rotation3(::AbstractFrameGraphModel, ::Int, ::Int, ::Number) end
 
 """
-    rotation6(model::F, from::Int, to::Int, time::T) where {T, F <: AbstractFrameGraphModel}
+    rotation6(model::F, from::Int, to::Int, time::Number)
 
 This function serves as an interface for constructing a rotation matrix and its first derivative 
 between two axes within a frame graph model.
@@ -120,10 +120,10 @@ between two axes within a frame graph model.
 !!! warning 
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
-@interface function rotation6(::F, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+@interface function rotation6(::AbstractFrameGraphModel, ::Int, ::Int, ::Number) end
 
 """
-    rotation9(model::F, from::Int, to::Int, time::T) where {T, F <: AbstractFrameGraphModel}
+    rotation9(model::F, from::Int, to::Int, time::Number)
 
 This function serves as an interface for constructing a rotation matrix, its first, second 
 derivative between two axes within a frame graph model.
@@ -137,10 +137,10 @@ derivative between two axes within a frame graph model.
 !!! warning 
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
-@interface function rotation9(::F, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+@interface function rotation9(::AbstractFrameGraphModel, ::Int, ::Int, ::Number) end
 
 """
-    rotation12(model::F, from::Int, to::Int, time::T) where {T, F <: AbstractFrameGraphModel}
+    rotation12(model::F, from::Int, to::Int, time::Number)
 
 This function serves as an interface for constructing a rotation matrix, its first, second and third 
 derivative between two axes within a frame graph model.
@@ -154,6 +154,6 @@ derivative between two axes within a frame graph model.
 !!! warning 
     Concrete implementations of `AbstractFrameGraphModel` must provide this function!
 """
-@interface function rotation12(::F, ::Int, ::Int, ::T) where {T, F <: AbstractFrameGraphModel} end
+@interface function rotation12(::AbstractFrameGraphModel, ::Int, ::Int, ::Number) end
 
 end
