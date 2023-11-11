@@ -18,17 +18,7 @@ For `JSMD` compatibility, see also:
 [`add_vertex!`](@ref), 
 [`add_edge!`](@ref).
 
-For `Graphs.jl` compatibility, see also: 
-[`has_vertex`](@ref Graphs.has_vertex)
-[`has_edge`](@ref Graphs.has_edge)
-[`edges`](@ref Graphs.edges)
-[`edgetype`](@ref Graphs.edgetype)
-[`inneighbors`](@ref Graphs.inneighbors)
-[`ne`](@ref Graphs.ne)
-[`nv`](@ref Graphs.nv)
-[`outneighbors`](@ref Graphs.outneighbors)
-[`vertices`](@ref Graphs.vertices)
-[`is_directed`](@ref Graphs.is_directed)
+For `Graphs.jl` compatibility, see also: [Graphs.jl interface](https://juliagraphs.org/Graphs.jl/dev/ecosystem/interface/)
 """
 abstract type AbstractJSMDGraph{T} <: AbstractGraph{T} end 
 
