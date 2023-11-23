@@ -11,7 +11,7 @@ Abstract type for graphs.
 Subtype it to create graphs compatible with the JSMD ecosystem.
 
 Graphs here could be compatible with both JSMD ecosystem and [`Graphs.jl`](https://github.com/JuliaGraphs/Graphs.jl):
- - For `JSMD` compatibility, see also: [`has_path`](@ref) and [`get_path`](@ref).
+ - For `JSMD` compatibility, see also: [`get_path`](@ref).
  - For `Graphs.jl` compatibility, see also: [Graphs.jl interface](https://juliagraphs.org/Graphs.jl/dev/ecosystem/interface/)
 """
 abstract type AbstractJSMDGraph{T} <: Graphs.AbstractGraph{T} end 
