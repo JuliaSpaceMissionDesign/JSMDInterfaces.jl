@@ -54,13 +54,6 @@ abstract type AbstractJSMDGraphNode end
 # ==================
 
 """
-    add_vertex!(g::AbstractJSMDGraph, vertex::AbstractJSMDGraphNode)
-
-This function adds `vertex` to the graph `g`.
-"""
-@interface function Graphs.add_vertex!(::AbstractJSMDGraph, ::N) where {N<:AbstractJSMDGraphNode} end 
-
-"""
     add_edge!(g::AbstractJSMDGraph, from::Int, to::Int, cost::Int)
 
 This function add an edge between `from` and `to` with weight `cost`.
@@ -72,7 +65,14 @@ This function add an edge between `from` and `to` with weight `cost`.
 
 Return true if there is a path between `from` and `to` in the graph `g`.
 """
-@interface function has_path(::AbstractJSMDGraph, ::Int, ::Int) end 
+@interface function Graphs.has_path(::AbstractJSMDGraph, ::Int, ::Int) end 
+
+"""
+    add_node!(g::AbstractJSMDGraph, node::AbstractJSMDGraphNode)
+
+This function adds `node` to the graph `g`.
+"""
+@interface function add_node!(::AbstractJSMDGraph, ::N) where {N<:AbstractJSMDGraphNode} end 
 
 """
     get_path(g::AbstractJSMDGraph, from::Int, to::Int)
