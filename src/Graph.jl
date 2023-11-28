@@ -1,85 +1,99 @@
 module Graph
 
 using JSMDInterfaces.Interface
-using Graphs
 
-using JSMDInterfaces.Interface: @interface 
-
-import Graphs: has_vertex, 
-               has_edge, 
-               edges, 
-               edgetype, 
-               inneighbors, 
-               ne, 
-               nv, 
-               outneighbors, 
-               vertices, 
-               is_directed
+import Graphs:
+    AbstractGraph,
+    has_vertex, 
+    has_edge, 
+    edges, 
+    edgetype, 
+    inneighbors, 
+    ne, 
+    nv, 
+    outneighbors, 
+    vertices, 
+    is_directed, 
+    add_vertex!, 
+    add_edge!, 
+    has_path
 
 """    
     AbstractJSMDGraph{T}
 
 Abstract type for graphs. 
-Subtype it to create a graphs compatible with the ecosystem.
+Subtype it to create graphs compatible with the JSMD ecosystem.
 
-Graphs here could be compatible with both JSMD ecosystem and [`Graphs.jl`](https://github.com/JuliaGraphs/Graphs.jl).
-
-For `JSMD` compatibility, see also: [`add_vertex!`](@ref) and [`add_edge!`](@ref).
-
-For `Graphs.jl` compatibility, see also: [Graphs.jl interface](https://juliagraphs.org/Graphs.jl/dev/ecosystem/interface/)
+Graphs here could be compatible with both JSMD ecosystem and [`Graphs.jl`](https://github.com/JuliaGraphs/Graphs.jl):
+ - For `JSMD` compatibility, see also: [`get_path`](@ref).
+ - For `Graphs.jl` compatibility, see also: [Graphs.jl interface](https://juliagraphs.org/Graphs.jl/dev/ecosystem/interface/)
 """
 abstract type AbstractJSMDGraph{T} <: AbstractGraph{T} end 
+
 
 """    
     AbstractJSMDGraphNode
 
 Abstract type for graph nodes. 
-Subtype it to create a graph nodes compatible with the ecosystem.
+Subtype it to create a node graph compatible with the JSMD ecosystem.
 """
 abstract type AbstractJSMDGraphNode end
 
-# Graphs interface
 
-@interface function Graphs.has_vertex(::AbstractJSMDGraph, ::Int) end 
+# Graphs interfaces
+# ==================
 
-@interface function Graphs.has_edge(::AbstractJSMDGraph, ::Int, ::Int) end
+@interface function has_vertex(::AbstractJSMDGraph, ::Int) end 
 
-@interface function Graphs.edges(::AbstractJSMDGraph) end 
+@interface function has_edge(::AbstractJSMDGraph, ::Int, ::Int) end
 
-@interface function Graphs.edgetype(::AbstractJSMDGraph) end 
+@interface function edges(::AbstractJSMDGraph) end 
 
-@interface function Graphs.inneighbors(::AbstractJSMDGraph, ::Int) end 
+@interface function edgetype(::AbstractJSMDGraph) end 
 
-@interface function Graphs.ne(::AbstractJSMDGraph) end 
+@interface function inneighbors(::AbstractJSMDGraph, ::Int) end 
 
-@interface function Graphs.nv(::AbstractJSMDGraph) end 
+@interface function ne(::AbstractJSMDGraph) end 
 
-@interface function Graphs.outneighbors(::AbstractJSMDGraph, ::Int) end 
+@interface function nv(::AbstractJSMDGraph) end 
 
-@interface function Graphs.vertices(::AbstractJSMDGraph) end 
+@interface function outneighbors(::AbstractJSMDGraph, ::Int) end 
 
-@interface function Graphs.is_directed(::AbstractJSMDGraph) end 
+@interface function vertices(::AbstractJSMDGraph) end 
 
-# JSMD interface
+@interface function is_directed(::AbstractJSMDGraph) end 
+
+
+# JSMD interfaces
+# ==================
 
 """
-    add_vertex!(::AbstractJSMDGraph, ::N)
+    add_node!(g::AbstractJSMDGraph, vertex::AbstractJSMDGraphNode)
 
-This function serves as an interface for inserting a new vertex in a graph.
-
-!!! warning 
-    Concrete implementations of `AbstractJSMDGraph` must provide this function!
+This function adds `vertex` to the graph `g`.
 """
 @interface function add_vertex!(::AbstractJSMDGraph, ::N) where {N<:AbstractJSMDGraphNode} end 
 
 """
-    add_edge!(::AbstractJSMDGraph, ::Int, ::Int, ::Int)
+    add_edge!(g::AbstractJSMDGraph, from::Int, to::Int, cost::Int)
 
-This function serves as an interface for inserting a new (weighted) edge in a graph.
-
-!!! warning 
-    Concrete implementations of `AbstractJSMDGraph` must provide this function!
+This function add an edge between `from` and `to` with weight `cost`.
 """
 @interface function add_edge!(::AbstractJSMDGraph, ::Int, ::Int, ::Int) end 
+
+"""
+    has_path(g::AbstractJSMDGraph, from::Int, to::Int)
+
+Return true if there is a path between `from` and `to` in the graph `g`.
+"""
+@interface function has_path(::AbstractJSMDGraph, ::Int, ::Int) end 
+
+"""
+    get_path(g::AbstractJSMDGraph, from::Int, to::Int)
+
+Get the nodes on hte path between and including `from' and `to`. Returns an empty array if 
+either `from` or `to` are not part of `g` or if there is no path between them.
+"""
+@interface function get_path(::AbstractJSMDGraph, ::Int, ::Int) end 
 
 end
