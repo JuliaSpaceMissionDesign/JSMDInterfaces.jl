@@ -1,11 +1,13 @@
 module Frames
 
-using Graphs: AbstractGraph
-using JSMDInterfaces.Interface
-
 export AbstractJSMDFrameGraph,
        vector3, vector6, vector9, vector12,
        rotation3, rotation6, rotation9, rotation12
+
+using JSMDInterfaces.Interface
+
+import JSMDInterfaces.Graph: AbstractJSMDGraph
+
 
 """
     AbstractJSMDFrameGraph
@@ -13,10 +15,7 @@ export AbstractJSMDFrameGraph,
 Abstract type for frames graphs. 
 Subtype it to create a new frames graph compatible with the ecosystem.
 """
-abstract type AbstractJSMDFrameGraph{T} <: AbstractGraph{T} end
-
-# ----
-# JSMD interface 
+abstract type AbstractJSMDFrameGraph{T} <: AbstractJSMDGraph{T} end
 
 """
     vector3(model::F, from::Int, to::Int, axis::Int, time::Number)
