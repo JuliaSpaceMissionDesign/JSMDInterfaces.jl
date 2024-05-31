@@ -9,5 +9,6 @@ include("Frames.jl")
 include("Math.jl")
 include("Ephemeris.jl")
 include("Models.jl")
+include("Bodies.jl")
 
 end
