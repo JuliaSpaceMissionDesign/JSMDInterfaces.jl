@@ -17,6 +17,7 @@ makedocs(;
                 "interfaces/Frames.md",
                 "interfaces/Math.md",
                 "interfaces/Ephemeris.md",
+                "interfaces/Bodies.md",
                 "interfaces/Models.md"
             ]
         ],
